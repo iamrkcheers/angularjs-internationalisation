@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Internationalistaion</title>
+    <script src="angular.min.js"></script>
+    <script src="tmhDynamicLocale.min.js"></script>
+    <script>
+        var app=angular.module("app",["tmh.dynamicLocale"]);
+        app.controller("ctrl",function($scope,tmhDynamicLocale){
+            $scope.show=function(index){
+                tmhDynamicLocale.set(index);
+                $scope.date=new Date();
+                $scope.salary=987654;   
+            }
+        });
+    </script>
+</head>
+<body ng-app="app" ng-controller="ctrl" ng-init="show('en-us')">
+    <h1>This is my heading !</h1>
+    <h3>Today's Date is {{date|date:'fullDate'}}</h3>
+    <h3>Current Salary is {{salary|currency}}</h3>
+    <button ng-click="show('hi-in')">Indian</button>&nbsp;&nbsp;<button ng-click="show('en-us')">American</button>
+</body>
+</html>
